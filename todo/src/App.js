@@ -36,6 +36,10 @@ function App() {
     }))
   }
 
+  const editTask = (id) => {
+    
+  }
+
   return (
     <div className="App">
       <div className="addNewTask">
@@ -45,7 +49,13 @@ function App() {
       <div className="taskList">
         {todoList.map((task)=> {
           return (
-            <Task  id={task.id} taskName={task.taskName} deleteTask={deleteTask} toggleComplete={toggleComplete} completed={task.completed}/>
+            <Task  id={task.id} 
+            taskName={task.taskName} 
+            deleteTask={deleteTask} 
+            toggleComplete={toggleComplete} 
+            completed={task.completed}
+            edit={editTask}
+            />
           )
         })}
       </div>
