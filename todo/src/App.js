@@ -5,6 +5,7 @@ import { Task } from './Task';
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [edit, setEdit] = useState(false)
 
   const handleChange = (event) => {
     setNewTask(event.target.value);
@@ -36,8 +37,8 @@ function App() {
     }))
   }
 
-  const editTask = (id) => {
-    
+  const editTask = () => {
+    setEdit(true)
   }
 
   return (
