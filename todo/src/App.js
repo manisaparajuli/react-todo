@@ -1,11 +1,12 @@
 import './App.css';
 import { useState } from 'react'; 
 import { Task } from './Task';
+import Joke from './components/Joke';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
-  const [edit, setEdit] = useState(false);
+
 
   const handleChange = (event) => {
     setNewTask(event.target.value);
@@ -37,33 +38,6 @@ function App() {
     }))
   }
 
-  const editTask = (id) => {
-    setTodoList(todoList.map((task) => {
-      if (task.id === id ){
-        return setEdit(true)
-      }else{
-        return task;
-      }
-    }))
-  }
-
-  const setUpdate = (id, updateTask) => {
-    setTodoList( todoList.map((task) =>{
-      if (task.id === id ){
-        return task.taskName = updateTask 
-      }else{
-        return task;
-      }
-    }))
-  };
-
-  // const handleUpdateDone =(id, event) => {
-  //   todoList.map((task)=> {
-  //     if (task.id === id || event.key === 'Enter'){
-  //       return {...task, edit : false}
-  //     }
-  //   })
-  // }
   return (
     <div className="App">
       <div className="addNewTask">
@@ -78,15 +52,13 @@ function App() {
               deleteTask={deleteTask} 
               toggleComplete={toggleComplete} 
               completed={task.completed}
-              editTask={editTask}
-              edit={task.edit}
-              setUpdate={setUpdate}
-              
               />
             </div>
           )
         })}
       </div>
+
+      <Joke/>
     </div>
   );
 }
