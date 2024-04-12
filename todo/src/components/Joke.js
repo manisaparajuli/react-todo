@@ -5,17 +5,20 @@ import Axios from 'axios';
 const Joke = () => {
   const [getJoke, setJoke] = useState("")
 
-  useEffect(() =>{
+  const showJoke = () => {
     Axios.get("https://api.chucknorris.io/jokes/random").then((res) => {
       setJoke(res.data.value)
     })
+  }
+  useEffect(() =>{
+    showJoke();
   }, [])
 
   return (
     <div>
-      <button>Get Random Chuck Norris</button>
+      <button onClick={showJoke}>View Random Chuck Norris</button>
       <p>{getJoke}</p>
-      
+
     </div>
   )
 }
