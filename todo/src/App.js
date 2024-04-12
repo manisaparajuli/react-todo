@@ -2,6 +2,8 @@ import './App.css';
 import { useState } from 'react'; 
 import { Task } from './Task';
 import Joke from './components/Joke';
+import Excuses from './components/Excuses';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -57,7 +59,7 @@ function App() {
           )
         })}
       </div>
-
+      <Excuses/>
       <Joke/>
     </div>
   );
