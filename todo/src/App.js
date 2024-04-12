@@ -5,6 +5,7 @@ import { Task } from './Task';
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [edit, setEdit] = useState(false);
 
   const handleChange = (event) => {
     setNewTask(event.target.value);
@@ -14,7 +15,7 @@ function App() {
       id: todoList.length ? todoList[todoList.length -1].id + 1 : 0 ,
       taskName: newTask,
       completed: false,
-      edit: false
+      
     }
     setTodoList([...todoList, task])
   }
@@ -39,7 +40,7 @@ function App() {
   const editTask = (id) => {
     setTodoList(todoList.map((task) => {
       if (task.id === id ){
-        return {...task, edit: true}
+        return setEdit(true)
       }else{
         return task;
       }
@@ -49,23 +50,20 @@ function App() {
   const setUpdate = (id, updateTask) => {
     setTodoList( todoList.map((task) =>{
       if (task.id === id ){
-        return task.taskName = updateTask
+        return task.taskName = updateTask 
       }else{
         return task;
       }
     }))
   };
 
-  const saveTask = (id) => {
-    setNewTask( todoList.map((task) =>{
-      if (task.id === id ){
-        return {...task, edit: false}
-      }else{
-        return task;
-      }
-    }))
-  }
-
+  // const handleUpdateDone =(id, event) => {
+  //   todoList.map((task)=> {
+  //     if (task.id === id || event.key === 'Enter'){
+  //       return {...task, edit : false}
+  //     }
+  //   })
+  // }
   return (
     <div className="App">
       <div className="addNewTask">
@@ -75,7 +73,6 @@ function App() {
       <div className="taskList">
         {todoList.map((task)=> {
           return ( <div key={task.id}>
-              
               <Task  id={task.id} 
               taskName={task.taskName} 
               deleteTask={deleteTask} 
@@ -84,7 +81,7 @@ function App() {
               editTask={editTask}
               edit={task.edit}
               setUpdate={setUpdate}
-              saveTask={saveTask}
+              
               />
             </div>
           )
